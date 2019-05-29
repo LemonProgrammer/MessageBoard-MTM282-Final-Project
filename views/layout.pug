@@ -2,7 +2,9 @@ html
 head
     block headerBlock
         title layoutExTitle
-        script(src='/public/index.html')
+        
+    link(href="https://fonts.googleapis.com/css?family=Inika&display=swap" rel="stylesheet")
+    link(rel="stylesheet" href="styles.css")
     header
         div(id='headerDiv')
             h3 WebDev Massageboard
@@ -10,4 +12,6 @@ head
             div(id='upperButtonsDiv')
                 button(id='loginButton')LOGIN
                 button(id='registerButton')REGISTER
+body
     block content
+        script(src='/public/index.html')

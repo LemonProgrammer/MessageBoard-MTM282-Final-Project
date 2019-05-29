@@ -12,7 +12,7 @@ block content
             button(id="editNameButt") EDIT
             div(id="editNameDiv")
                 p Enter new Username: 
-                textarea(id="nameText" rows="1" cols="40" value="")
+                textarea(id="nameText" name="userName" rows="1" cols="40" value="")
                 br
                 button(class="enterNewDetails")
 
@@ -21,10 +21,10 @@ block content
             button(id="editPasswordButt") EDIT
             div(id="editPasswordDiv")
                 p Enter old Password: 
-                textarea(id="oldPassText" rows="1" cols="40" value="")
+                textarea(id="oldPassText" name="password0" rows="1" cols="40" value="")
                 br
                 p Enter new Password: 
-                textarea(id="newPassText" rows="1" cols="40" value="")
+                textarea(id="newPassText" name="password1" rows="1" cols="40" value="")
                 br
                 button(id="enterNewDetails")
 
@@ -36,7 +36,7 @@ block content
             button(id="editEmailButt") EDIT
             div(id="editEmailDiv")
                 p Enter new Email: 
-                textarea(id="email Text" rows="1" cols="40" value="")
+                textarea(id="emailText" name="email" rows="1" cols="40" value="")
                 br
                 button(class="enterNewDetails")
 
@@ -45,6 +45,7 @@ block content
             button(id="editAgeButt") EDIT
             div(id="editAgeDiv")
                 p Enter new Age: 
-                textarea(id="ageText" rows="1" cols="40" value="")
+                textarea(id="ageText" name="age" rows="1" cols="40" value="")
                 br
                 button(class="enterNewDetails")
+    script(src='/public/index.html')
