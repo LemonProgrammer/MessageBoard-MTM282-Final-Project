@@ -1,2 +1,13 @@
 html
 head
+    block headerBlock
+        title layoutExTitle
+        script(src='/public/index.html')
+    header
+        div(id='headerDiv')
+            h3 WebDev Massageboard
+            p #{userName}
+            div(id='upperButtonsDiv')
+                button(id='loginButton')LOGIN
+                button(id='registerButton')REGISTER
+    block content

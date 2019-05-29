@@ -1,0 +1,27 @@
+extends layout.pug
+
+block headerBlock
+    title Create New Account
+    script(src='/public/index.html')
+
+block content
+    h2 Create New Account
+    p Username: 
+    textarea(name="newNameText", cols="30", rows="10")
+    br
+    p Password : 
+    textarea(name="newPasswordText", cols="30", rows="10")
+    br
+    p Repeat Password : 
+    textarea(name="RepPasswordText", cols="30", rows="10")
+    br
+    p Age : 
+    textarea(name="newAgeText", cols="30", rows="10")
+    br
+    p Email : 
+    textarea(name="newEmailText", cols="30", rows="10")
+    br
+    p Avatar : 
+    button(id="newAVButton") Create New
+    button(id="randomAVButton") Random
+    button(id="createNewAccountButton") ENTER

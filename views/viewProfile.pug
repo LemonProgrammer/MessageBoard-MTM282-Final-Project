@@ -1,0 +1,19 @@
+extends layout.pug
+
+block headerBlock
+    title Home
+    script(src='/public/index.html')
+
+block content
+    img(src=iconURL)
+    div(id='profileInfoAll')
+        div(id='userDiv')
+            p Username :: [#{userName}]
+        div(id='passDive')
+            p Password :: [#{password}]
+        div(id='userLevelDiv')
+            p User Type :: [#{userLevel}]
+        div(id='emailDiv')
+            p Email :: [#{email}]
+        div(id='ageDiv')
+            p Age :: [#{age}]
