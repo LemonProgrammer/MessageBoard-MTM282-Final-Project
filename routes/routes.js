@@ -1,33 +1,32 @@
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/data');
+let mongoose = require('mongoose');
 
-var mdb = mongoose.connection;
-mdb.on('error', console.error.bind(console, 'connection error:'));
-mdb.once('open', function (callback) {
+exports.index = (req,res) => {
+    res.render('home', {
 
-});
-
-exports.home = (req, res) => {
-    res.render("home", {
-        title: "HomePage"
     });
-}
+};
 
-exports.createAccount = (req, res) => {
-    res.render("create account", {
-        title: "Create Account"
-    });
-}
+exports.viewProfile = (req,res) => {
 
-exports.editAccount = (req, res) => {
-    res.render("edit account", {
-        title: "Edit Account"
+    res.render('viewProfile', {
+        title: 'View Profile'
     });
-}
+};
+exports.changeAvatar = (req,res) => {
 
-exports.viewProfile = (req, res) => {
-    res.render("view profile", {
-        title: "View Profile"
+    res.render('changeAvatar', {
+        title: 'Change Avatar'
     });
-}
+};
+exports.createAccount = (req,res) => {
+
+    res.render('createAccount', {
+        title: 'Create Account'
+    });
+};
+exports.editAccount = (req,res) => {
+
+    res.render('editAccount', {
+        title: 'Edit Account'
+    });
+};

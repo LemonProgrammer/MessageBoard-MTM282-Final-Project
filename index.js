@@ -1,26 +1,26 @@
-const express = require("express");
-const session = require("express-sessions");
-const bodyParser = require("body-parser");
-const pug = require("pug");
-const path = require("path");
-const route = require("./routes/routes.js");
-
 const app = express();
+const express = require('express'), 
+ pug = require('pug'), 
+ bodyParser = require('body-parser'),
+ route = require('./routes/routes.js'),
+ path = require('path');
 
-app.set("view engine", "pug");
-app.set("views", __dirname + "/views");
+var app = express();
 
-app.use(express.static(path.join(__dirname + "/public")));
-
-const urlencodedParser = bodyParser.urlencoded({
-  extended: true
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/views');
+app.use(express.static(path.join(__dirname + '/public')));
+var urlEncodedParser = bodyParser.urlencoded({
+    extended: true
 });
 
-app.get("/");
-app.get("/create", route.createAccount);
-app.post("/create", urlencodedParser);
-app.get("/edit/:id");
-app.post("/edit/:id")
-app.get("/view");
+app.get('/', route.index);
+app.get('/viewProfile', route.viewProfile);
+app.get('/createAccount', route.createAccount);
+app.get('/editAccount', route.editAccount);
+app.get('/changeAvatar', route.changeAvatar);
 
-app.listen(3000);
+
+
+
+app.listen(8000);
