@@ -5,7 +5,6 @@ exports.index = (req,res) => {
 
     });
 };
-
 exports.viewProfile = (req,res) => {
 
     res.render('viewProfile', {
