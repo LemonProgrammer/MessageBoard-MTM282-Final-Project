@@ -1,0 +1,51 @@
+extends layout.pug
+
+block headerBlock
+    title Home
+    script(src='/public/index.html')
+
+block content
+    img(src=iconURL float="left")
+    div(id='profileInfoAll')
+        div(id='userDiv')
+            p Username :: [#{userName}]
+            button(id="editNameButt") EDIT
+            div(id="editNameDiv")
+                p Enter new Username: 
+                textarea(id="nameText" name="userName" rows="1" cols="40" value="")
+                br
+                button(class="enterNewDetails")
+
+        div(id='passDiv')
+            p Password :: [#{password}]
+            button(id="editPasswordButt") EDIT
+            div(id="editPasswordDiv")
+                p Enter old Password: 
+                textarea(id="oldPassText" name="password0" rows="1" cols="40" value="")
+                br
+                p Enter new Password: 
+                textarea(id="newPassText" name="password1" rows="1" cols="40" value="")
+                br
+                button(id="enterNewDetails")
+
+        div(id='userLevelDiv')
+            p User Type :: [#{userLevel}]
+
+        div(id='emailDiv')
+            p Email :: [#{email}]
+            button(id="editEmailButt") EDIT
+            div(id="editEmailDiv")
+                p Enter new Email: 
+                textarea(id="emailText" name="email" rows="1" cols="40" value="")
+                br
+                button(class="enterNewDetails")
+
+        div(id='ageDiv')
+            p Age :: [#{age}]
+            button(id="editAgeButt") EDIT
+            div(id="editAgeDiv")
+                p Enter new Age: 
+                textarea(id="ageText" name="age" rows="1" cols="40" value="")
+                br
+                button(class="enterNewDetails")
+    script(src='/public/index.html')
