@@ -16,4 +16,11 @@ const urlencodedParser = bodyParser.urlencoded({
   extended: true
 });
 
+app.get("/");
+app.get("/create", route.createAccount);
+app.post("/create", urlencodedParser);
+app.get("/edit/:id");
+app.post("/edit/:id")
+app.get("/view");
+
 app.listen(3000);
