@@ -1,11 +1,10 @@
-const app = express();
 const express = require('express'), 
- pug = require('pug'), 
- bodyParser = require('body-parser'),
- route = require('./routes/routes.js'),
- path = require('path');
+pug = require('pug'), 
+bodyParser = require('body-parser'),
+route = require('./routes/routes.js'),
+path = require('path');
 
-var app = express();
+const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
