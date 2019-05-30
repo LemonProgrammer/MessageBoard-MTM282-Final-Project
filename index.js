@@ -7,7 +7,7 @@ const express = require('express'),
 var app = express();
 
 app.set('view engine', 'pug');
-app.set('views', __dirname, + '/views');
+app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname + '/public')));
 var urlEncodedParser = bodyParser.urlencoded({
     extended: true
