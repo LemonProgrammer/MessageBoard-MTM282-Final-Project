@@ -1,8 +1,8 @@
 const express = require('express'), 
- pug = require('pug'), 
- bodyParser = require('body-parser'),
- route = require('./routes/routes.js'),
- path = require('path');
+pug = require('pug'), 
+bodyParser = require('body-parser'),
+route = require('./routes/routes.js'),
+path = require('path');
 
 const app = express();
 
