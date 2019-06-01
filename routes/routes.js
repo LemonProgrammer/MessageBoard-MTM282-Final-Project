@@ -7,11 +7,12 @@ const mdb = mongoose.connection;
 mdb.on("error", console.error.bind(console, "connection error:"));
 mdb.once("open", function(callback) {});
 
-const personSchema = mongoose.Schema({
+const accountSchema = mongoose.Schema({
   //What would we added to this schema
+
 });
 
-const Person = mongoose.model("People_Collection", personSchema);
+const Account = mongoose.model("Account_Collection", accountSchema);
 
 exports.index = (req, res) => {
   res.render("home", {});
