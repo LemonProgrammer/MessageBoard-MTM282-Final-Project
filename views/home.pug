@@ -1,9 +1,5 @@
-extends layout.pug
+extends layout
 
-block headerBlock
-    title Home
-    script(src='/public/index.html')
-    
 block content
     div(id="postsDiv")
         p Welcome to the Message Board!
@@ -12,4 +8,3 @@ block content
         form(action="")
             input(type="text" name="currentEntry")
             button(id='submitEntryButton' type='submit' value="SUBMIT") SUBMIT
-    script(src='/public/index.html')
