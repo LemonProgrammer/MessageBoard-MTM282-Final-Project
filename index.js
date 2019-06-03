@@ -9,16 +9,21 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname + '/public')));
+
 var urlEncodedParser = bodyParser.urlencoded({
     extended: true
 });
 
 app.get('/', route.index);
-app.get('/viewProfile', route.viewProfile);
+app.get('/home', route.index);
+app.get('/home/:id', route.index);
+app.get('/viewProfile/:id', route.viewProfile);
 app.get('/createAccount', route.createAccount);
 app.get('/editAccount', route.editAccount);
 app.get('/changeAvatar', route.changeAvatar);
-
+app.get('/deleteAccount/:id', route.deleteAccount);
+app.post('/createAccount', urlEncodedParser, route.createNewAccount);
+app.post('/home', urlEncodedParser, route.verifyLogin);
 
 
 

@@ -2,19 +2,24 @@ extends layout.pug
 
 block headerBlock
     title Home
-    script(src='/public/index.html')
-
+    h1 #{profile.user_name}'s Page
 block content
-    img(src=iconURL)
+    img
     div(id='profileInfoAll')
         div(id='userDiv')
-            p Username :: [#{userName}]
-        div(id='passDive')
-            p Password :: [#{password}]
-        div(id='userLevelDiv')
-            p User Type :: [#{userLevel}]
+            p Username :: [#{profile.user_name}]
+        div(id='passDiv')
+            p Password :: [#{profile.password}]
+        div(id='nameDiv')
+            p Full Name :: [#{profile.first_name} #{profile.last_name}]
+        div(id='accountTypeDiv')
+            p User Type :: [#{profile.account_type}]
         div(id='emailDiv')
-            p Email :: [#{email}]
-        div(id='ageDiv')
-            p Age :: [#{age}]
-    script(src='/public/index.html')
+            p Email :: [#{profile.email}]
+    div(id='optionsDiv')
+        ul(id='optionsUL')
+            li
+                a(href=`/editAccount/${profile.id}`) Edit Account
+            li
+                a(href=`/deleteAccount/${profile.id}`) Delete Account
+    

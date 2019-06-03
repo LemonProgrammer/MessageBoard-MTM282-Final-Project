@@ -7,40 +7,61 @@ const mdb = mongoose.connection;
 mdb.on("error", console.error.bind(console, "connection error:"));
 mdb.once("open", function(callback) {});
 
-const accountSchema = mongoose.Schema({
-  //What would we added to this schema
-    account_id: Int32Array,
-    user_id: Int32Array,
-    account_type: String
-});
 const profileSchema = mongoose.Schema({
-    user_id: Int32Array,
+    account_type: String,
     first_name: String,
     last_name: String,
     user_name: String,
-    avatar_url: String,
-    is_active: Boolean
+    email: String,
+    password: String
+    // avatar_url: String
 });
 const messagePostSchema = mongoose.Schema({
-    post_id: Int32Array,
-    user_id: Int32Array,
+    post_id: Number,
+    user_id: Number,
     user_name: String,
-    data_posted: Date,
+    date_posted: Date,
     text_content: String
 });
 
-const Account = mongoose.model("Accounts", accountSchema);
 const Profile = mongoose.model("Profiles", profileSchema);
 const Message = mongoose.model("MessagePosts", messagePostSchema);
-
+////////////////////////////////////////////////////////////////////////////////
 exports.index = (req, res) => {
-  res.render("home", {});
-};
+  Profile.find((err,profile) => {
+    if(err)
+    {
+      return console.error(err);
+    }
+    res.render("home", {
+      title: "Home Page",
+      profiles: profile
+    });
 
-exports.viewProfile = (req, res) => {
-  res.render("viewProfile", {
-    title: "View Profile"
   });
+};
+exports.viewProfile = (req, res) => {
+  let requestID = req.params.id;
+  let isIdValid = mongoose.Types.ObjectId.isValid(requestID);
+  if(isIdValid)
+  {
+    Profile.findById(requestID, (err, profile) => {
+      if(err)
+      {
+        return console.error(err);
+      }
+      res.render("viewProfile", {
+        title: `${profile.user_name}'s Page`,
+        profile: profile
+      });
+    });
+
+  }
+  else
+  {
+    console.log('must provide valid id parameters');
+    res.redirect('/')
+  }
 };
 exports.changeAvatar = (req, res) => {
   res.render("changeAvatar", {
@@ -52,8 +73,73 @@ exports.createAccount = (req, res) => {
     title: "Create Account"
   });
 };
+
+let bycrypt = require('bcrypt-nodejs');
+let hashPassword = (passwordStr) => {
+  return bycrypt.hashSync(passwordStr);
+  // bycrypt.hash(passwordStr, null, null, (err, hash) => {
+  //   passHash = hash;
+  //   console.log('password hashed');
+  //   return passHash;
+  // });
+};
+
+exports.createNewAccount = (req,res) => {
+  let hashedPass = hashPassword(req.body.password);
+    let profile = new Profile({
+      account_type: 'Admin',
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      user_name: req.body.user_name,
+      email: req.body.email,
+      password: hashedPass
+    });
+    profile.save((err, profile) => {
+      if(err)
+      {
+        return console.error(err);
+      }
+      console.log(`${profile.user_name}'s Profile Saved!`);
+    });
+    res.redirect(`/viewProfile/${profile._id}`);
+};
 exports.editAccount = (req, res) => {
   res.render("editAccount", {
     title: "Edit Account"
   });
 };
+
+exports.deleteAccount = (req,res) => {
+  let requestID = req.params.id;
+  Profile.findByIdAndDelete(requestID, (err, profile) => 
+  {
+    if(err)
+    {
+      return console.error(err);
+    }
+    res.redirect('/');
+  });
+};
+
+exports.verifyLogin = (req,res) => {
+  let userName = req.body.user_name;
+  let userPassword = req.body.password;
+  Profile.findOne({user_name:userName}, (err, profile) => {
+    if(err)
+    {
+      return console.error(err);
+    }
+    let isMatch = bycrypt.compareSync(userPassword, profile.password);
+    if(isMatch)
+    {
+      console.log(`${userName} has successfully logged in!`);
+    }
+    else
+    {
+      console.log("Login info did not match, try again.");
+    }
+    res.redirect(`/home/:${profile._id}`);
+  });
+};
+
+
