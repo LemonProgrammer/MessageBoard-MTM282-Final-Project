@@ -5,6 +5,19 @@ block headerBlock
     script(src='/public/index.html')
     
 block content
+    hr
+    div(id='usersDiv')
+        h1 Current Users On Site
+        div(id='users')
+            ul
+                each user in profiles
+                    li(id='userInfo')
+                        h3 Username: #{user.user_name}
+                        h4 Fullname: #{user.first_name} #{user.last_name}
+                        a(href=`/viewProfile/${user.id}`) Visit #{user.user_name}'s' Page!
+                    hr
+                    br
+    hr
     div(id="postsDiv")
         p Welcome to the Message Board!
     div(id="entryDiv")
