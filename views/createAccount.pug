@@ -2,22 +2,35 @@ extends layout
 
 block content
     h2 Create New Account
-    p Username: 
-    textarea(name="newNameText", cols="30", rows="10")
-    br
-    p Password : 
-    textarea(name="newPasswordText", cols="30", rows="10")
-    br
-    p Repeat Password : 
-    textarea(name="RepPasswordText", cols="30", rows="10")
-    br
-    p Age : 
-    textarea(name="newAgeText", cols="30", rows="10")
-    br
-    p Email : 
-    textarea(name="newEmailText", cols="30", rows="10")
-    br
-    p Avatar : 
-    button(id="newAVButton") Create New
-    button(id="randomAVButton") Random
-    button(id="createNewAccountButton") ENTER
+    form(id='profileForm' action="/createAccount", method="post") 
+        label(for='username') UserName
+        br
+        input(type='text', name='user_name', required)
+        br
+        br
+        label(for='password') Password
+        br
+        input(type='text', name='password', required)
+        br
+        br
+        label(for='password2') Repeat Password
+        br
+        input(type='text', name='password2', required)
+        br
+        br
+        label(for='firstname') First Name
+        br
+        input(type='text', name='first_name', required)
+        br
+        br
+        label(for='lastname') Last Name
+        br
+        input(type='text', name='last_name', required)
+        br
+        br
+        label(for='email') Email
+        br
+        input(type='text', name='email', required)
+        br
+        br
+        input(id="createAccButton", type='submit', value='Create New Account' autofocus) 
