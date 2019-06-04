@@ -103,6 +103,7 @@ exports.createNewAccount = (req,res) => {
     });
     res.redirect(`/viewProfile/${profile._id}`);
 };
+
 exports.editAccount = (req, res) => {
   res.render("editAccount", {
     title: "Edit Account"
@@ -142,4 +143,7 @@ exports.verifyLogin = (req,res) => {
   });
 };
 
+exports.updateProfileToDataBase = (req,res) => {
+  
+};
 

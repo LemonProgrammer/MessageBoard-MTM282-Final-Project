@@ -1,45 +1,45 @@
 extends layout.pug
 
-block headerBlock
-    title Home
-    script(src='/public/index.html')
-
 block content
-    img(src=iconURL float="left")
-    div(id='profileInfoAll')
-        div(id='userDiv')
-            p Username :: [#{userName}]
-            button(id="editNameButt") EDIT
-            div(id="editNameDiv")
-                p Enter new Username: 
-                textarea(id="nameText" name="userName" rows="1" cols="40" value="")
+    img(id='profilePic')
+    div(id='profileDiv')
+        form(id='profileForm', method='post', action=`/viewProfile/${currentProfile.id}`)
+            div(id='usernameFieldDiv')
+                label Enter New Username:
+                input(id='newUserName', type="text", name='user_name')
+                input(id="editUserNameButton", type='submit', value='Edit UserName')
                 br
-                button(class="enterNewDetails")
-
-        div(id='passDiv')
-            p Password :: [#{password}]
-            button(id="editPasswordButt") EDIT
+            div(id='passwordFieldDiv')
+                label Enter Old Password
+                input(id='oldPassword', type='text', name='password')
+                br
             div(id="editPasswordDiv")
-                p Enter old Password: 
-                textarea(id="oldPassText" name="password0" rows="1" cols="40" value="")
+                label Enter New Password: 
+                input(id="newPassword", type='text', name="password2")
                 br
-                p Enter new Password: 
-                textarea(id="newPassText" name="password1" rows="1" cols="40" value="")
+                label Enter The New Password Again: 
+                input(id="newPasswordRepeat", type='text', name="password3")
                 br
-                button(id="enterNewDetails")
-
-        div(id='userLevelDiv')
-            p User Type :: [#{userLevel}]
-
-        div(id='emailDiv')
-            p Email :: [#{email}]
-            button(id="editEmailButt") EDIT
-            div(id="editEmailDiv")
-                p Enter new Email: 
-                textarea(id="emailText" name="email" rows="1" cols="40" value="")
+                input(id='passwordButton', type="submit", value="Create New Password")
                 br
-                button(class="enterNewDetails")
-
+            div(id='editEmailDiv')
+                label Enter New Email
+                input(id="newEmail", type='text', name='email')
+                br
+                input(id='editEmailButton', type='text', value='Edit Email')
+                br
+            div(id="editFirstNameDiv")
+                label Enter new First Name:
+                input(id="firstNameInput", name="first_name", type='text')
+                br
+                input(id="editFirstName", type='submit', value='Edit First Name')
+                br
+            div(id="editLastNameDiv")
+                label Enter New Last Name:
+                input(id="lastNameInput", name="last_name", type='text')
+                br
+                input(id="editLastName", type='submit', value='Edit Last Name')
+                br
         div(id='ageDiv')
             p Age :: [#{age}]
             button(id="editAgeButt") EDIT
