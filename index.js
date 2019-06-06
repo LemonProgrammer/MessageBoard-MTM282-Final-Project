@@ -27,5 +27,4 @@ app.post('/createAccount', urlEncodedParser, route.createNewAccount);
 app.post('/home', urlEncodedParser, route.verifyLogin);
 
 
-
 app.listen(8000);

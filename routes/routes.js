@@ -138,27 +138,69 @@ exports.verifyLogin = (req,res) => {
 };
 
 exports.editAccount = (req, res) => {
-  res.render("editAccount", {
-    title: "Editting Account"
+  let requestID = req.params.id;
+  Profile.findById(requestID, (err, profile) => {
+    if(err)
+    {
+      return console.error(err);
+    }
+    // res.render("viewProfile", {
+    //   title: `${profile.user_name}'s Page`,
+    //   profile: profile
+    // });
+    res.render("editAccount", {
+      title: "Editing Account",
+      profile: profile
+    });
   });
 };
 
-exports.makeChangesToAccount = (req,res) => {
-  let hashedPass = hashPassword(req.body.password);
-    let profile = new Profile({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      user_name: req.body.user_name,
-      email: req.body.email,
-      password: hashedPass
-    });
-    Profile.findOneAndUpdate({},{},(err,doc)=> {
+exports.makeChangesToAccount = (err,req,res) => {
+  let hashedPass;
+  let profileId = req.params.id;  
+  let isIdValid = mongoose.Types.ObjectId.isValid(requestID);
+  if(isIdValid)
+  {
+  let profile = {};
+  if(!req.body.password.length == 0)
+  {
+    hashedPass = hashPassword(req.body.password);
+    profile.password = hashedPass;
+  }
+  if(!req.body.first_name.length == 0)
+  {
+    profile.first_name = req.body.first_name;
+  }
+  if(!req.body.last_name.length == 0)
+  {
+    profile.last_name = req.body.last_name;
+  }
+  if(!req.body.email.length == 0)
+  {
+    profile.email = req.body.email;
+  }
+
+  if(profile)
+  {
+    Profile.findOneAndUpdate({id: profileId},{$set: profile},{new: true},(err,doc)=> {
       if(err)
       {
         return console.error(err);
       }
       console.log(`${profile.user_name}'s Profile Updated!`);
+      res.send(doc);
     });
     res.redirect(`/viewProfile/${profile._id}`);
+  }
+  else
+  {
+    res.status(404);
+    res.render('error',{error: err});
+  }
+}
+else
+{
+  console.log('Server assumed params.id is wrong.');
+}
 };
 

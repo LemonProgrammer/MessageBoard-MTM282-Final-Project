@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-    h2 Editting Account
+    h2 Editing Account
         form(id='profileForm' action=`/editAccount/${profile.id}`, method="post") 
             label(for='password') Change Password
             br
@@ -23,4 +23,4 @@ block content
             input(type='text', name='email')
             br
             br
-            input(id="editAccButton", type='submit', value='Make Changes' autofocus) 
+            input(id="editAccButton", type='submit', value='Make Changes', autofocus) 
