@@ -2,13 +2,14 @@ doctype
 html
     head
         link(href="https://fonts.googleapis.com/css?family=Inika&display=swap" rel="stylesheet")
-        link(rel="stylesheet" href="./style.css")
+        link(rel="stylesheet" href="./styles/style.css")
+        script(src="/script.js")
     header
         div(id='headerDiv')
             p logo goes here
             h3 Some Website Name
         br
-        nav
+        nav#links
             a(href='/home') Home
             br
             a(href='/viewProfile') View Profile
@@ -33,7 +34,9 @@ html
             div(id='registerDiv')
                 a(href='/createAccount')
                     button(id='registerButton', autofocus) Register
-        br
+    br
+    br
+    body
     block content
     hr
     footer
