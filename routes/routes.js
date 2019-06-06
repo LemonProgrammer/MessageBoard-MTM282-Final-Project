@@ -59,7 +59,7 @@ exports.viewProfile = (req, res) => {
   }
   else
   {
-    console.log('must provide valid id parameters');
+    
     res.redirect('/')
   }
 };
@@ -103,11 +103,6 @@ exports.createNewAccount = (req,res) => {
     });
     res.redirect(`/viewProfile/${profile._id}`);
 };
-exports.editAccount = (req, res) => {
-  res.render("editAccount", {
-    title: "Edit Account"
-  });
-};
 
 exports.deleteAccount = (req,res) => {
   let requestID = req.params.id;
@@ -142,4 +137,28 @@ exports.verifyLogin = (req,res) => {
   });
 };
 
+exports.editAccount = (req, res) => {
+  res.render("editAccount", {
+    title: "Editting Account"
+  });
+};
+
+exports.makeChangesToAccount = (req,res) => {
+  let hashedPass = hashPassword(req.body.password);
+    let profile = new Profile({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      user_name: req.body.user_name,
+      email: req.body.email,
+      password: hashedPass
+    });
+    Profile.findOneAndUpdate({},{},(err,doc)=> {
+      if(err)
+      {
+        return console.error(err);
+      }
+      console.log(`${profile.user_name}'s Profile Updated!`);
+    });
+    res.redirect(`/viewProfile/${profile._id}`);
+};
 
