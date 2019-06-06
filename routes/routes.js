@@ -160,49 +160,51 @@ exports.editAccount = (req, res) => {
   }
 };
 
-exports.makeChangesToAccount = (err,req,res) => {
+exports.makeChangesToAccount = (req,res, err) => {
   let hashedPass;
   let profileId = req.params.id;  
-  let isIdValid = mongoose.Types.ObjectId.isValid(requestID);
+  let isIdValid = mongoose.Types.ObjectId.isValid(profileId);
   if(isIdValid)
   {
   let profile = {};
-  if(!req.body.password.length == 0)
+  if(req.body.password.length != 0)
   {
     hashedPass = hashPassword(req.body.password);
     profile.password = hashedPass;
   }
-  if(!req.body.first_name.length == 0)
+  if(req.body.first_name.length != 0)
   {
     profile.first_name = req.body.first_name;
+    console.log('did it hit here?');
   }
-  if(!req.body.last_name.length == 0)
+  if(req.body.last_name.length != 0)
   {
     profile.last_name = req.body.last_name;
   }
-  if(!req.body.email.length == 0)
+  if(req.body.email.length != 0)
   {
     profile.email = req.body.email;
   }
 
-  if(profile)
+  if(profile != null || profile != undefined)
   {
-    Profile.findOneAndUpdate({id: profileId},{$set: profile},{new: true},(err,doc)=> {
+    console.log('profile: ', profile);
+    Profile.findByIdAndUpdate(profileId,{$set: profile},{new: true, useFindAndModify: false},(err,doc)=> {
       if(err)
       {
         return console.error(err);
       }
-      console.log(`${profile.user_name}'s Profile Updated!`);
-      res.send(doc);
-      console.log('finished, redirecting');
-      res.redirect(`/viewProfile/${doc._id}`);
+      console.log(`${doc.user_name}'s Profile Updated!`);
+      // res.send(doc);
+      console.log('finished. redirecting');
+      res.redirect(`/viewProfile/${doc.id}`);
     });
   }
   else
   {
-    console.log('theres goes the error.');
-    res.status(404);
-    res.render('error',{error: err});
+    console.log('Error: nothing has been inputed! No changes occurred.');
+    console.log('Redirecting to home.');
+    res.redirect('/');
   }
 }
 else
