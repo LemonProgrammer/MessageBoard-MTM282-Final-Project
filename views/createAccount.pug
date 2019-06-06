@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
     h2 Create New Account
-    form(id='profileForm' action="/createAccount", method="post") 
+    form(id='profileForm' action="/createNewAccount", method="post") 
         label(for='username') UserName
         br
         input(type='text', name='user_name', required)

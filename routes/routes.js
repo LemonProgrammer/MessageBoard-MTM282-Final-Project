@@ -101,7 +101,8 @@ exports.createNewAccount = (req,res) => {
       }
       console.log(`${profile.user_name}'s Profile Saved!`);
     });
-    res.redirect(`/viewProfile/${profile._id}`);
+    // res.redirect(`/viewProfile/${profile._id}`);
+    res.redirect(`/`);
 };
 
 exports.deleteAccount = (req,res) => {
@@ -119,21 +120,29 @@ exports.deleteAccount = (req,res) => {
 exports.verifyLogin = (req,res) => {
   let userName = req.body.user_name;
   let userPassword = req.body.password;
+
   Profile.findOne({user_name:userName}, (err, profile) => {
     if(err)
     {
       return console.error(err);
     }
-    let isMatch = bycrypt.compareSync(userPassword, profile.password);
-    if(isMatch)
-    {
-      console.log(`${userName} has successfully logged in!`);
-    }
-    else
-    {
-      console.log("Login info did not match, try again.");
-    }
-    res.redirect(`/home/:${profile._id}`);
+    let isPassMatch = bycrypt.compareSync(userPassword, profile.password);
+        if (isPassMatch) 
+        {
+              req.session.user = { 
+              isAuthenticated: true, 
+              username: req.body.username,
+              password: req.body.password
+            };
+            res.redirect(`/home/:${profile._id}`);
+        } 
+        else 
+        {
+            // logout here so if the user was logged in before, it will log them out if user/pass wrong
+            res.redirect('/logout');
+            console.log("logged out of session");
+        }
+        console.log(`${userName} has successfully logged in!`);
   });
 };
 
@@ -204,7 +213,7 @@ exports.makeChangesToAccount = (req,res, err) => {
   {
     console.log('Error: nothing has been inputed! No changes occurred.');
     console.log('Redirecting to home.');
-    res.redirect('/');
+    res.redirect('/logout');
   }
 }
 else
@@ -213,3 +222,14 @@ else
 }
 };
 
+exports.logoutOfAccount = (req, res) => {
+  req.session.destroy((err) => {
+    if(err){
+        console.log(err);
+    }
+    else
+    {
+        res.redirect('/');
+    }
+});
+};
