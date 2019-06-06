@@ -139,6 +139,9 @@ exports.verifyLogin = (req,res) => {
 
 exports.editAccount = (req, res) => {
   let requestID = req.params.id;
+  let isIdValid = mongoose.Types.ObjectId.isValid(requestID);
+  if(isIdValid)
+  {
   Profile.findById(requestID, (err, profile) => {
     if(err)
     {
@@ -152,7 +155,9 @@ exports.editAccount = (req, res) => {
       title: "Editing Account",
       profile: profile
     });
+    console.log('oh its loading the page!');
   });
+  }
 };
 
 exports.makeChangesToAccount = (err,req,res) => {
@@ -189,11 +194,13 @@ exports.makeChangesToAccount = (err,req,res) => {
       }
       console.log(`${profile.user_name}'s Profile Updated!`);
       res.send(doc);
+      console.log('finished, redirecting');
+      res.redirect(`/viewProfile/${doc._id}`);
     });
-    res.redirect(`/viewProfile/${profile._id}`);
   }
   else
   {
+    console.log('theres goes the error.');
     res.status(404);
     res.render('error',{error: err});
   }
