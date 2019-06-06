@@ -1,10 +1,8 @@
 html
 head
-    block headerBlock
-        title layoutExTitle
-        
     link(href="https://fonts.googleapis.com/css?family=Inika&display=swap" rel="stylesheet")
     link(rel="stylesheet" href="styles.css")
+body
     header
         div(id='headerDiv')
             p logo goes here
@@ -36,6 +34,7 @@ head
                 a(href='/createAccount')
                     button(id='registerButton', autofocus) Register
         br
-body
     block content
-        script(src='/public/index.html')
+    hr
+    footer
+        p Team 4Star, 2019&copy 

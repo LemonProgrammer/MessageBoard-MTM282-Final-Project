@@ -1,51 +1,26 @@
 extends layout.pug
 
 block content
-    img(id='profilePic')
-    div(id='profileDiv')
-        form(id='profileForm', method='post', action=`/viewProfile/${currentProfile.id}`)
-            div(id='usernameFieldDiv')
-                label Enter New Username:
-                input(id='newUserName', type="text", name='user_name')
-                input(id="editUserNameButton", type='submit', value='Edit UserName')
-                br
-            div(id='passwordFieldDiv')
-                label Enter Old Password
-                input(id='oldPassword', type='text', name='password')
-                br
-            div(id="editPasswordDiv")
-                label Enter New Password: 
-                input(id="newPassword", type='text', name="password2")
-                br
-                label Enter The New Password Again: 
-                input(id="newPasswordRepeat", type='text', name="password3")
-                br
-                input(id='passwordButton', type="submit", value="Create New Password")
-                br
-            div(id='editEmailDiv')
-                label Enter New Email
-                input(id="newEmail", type='text', name='email')
-                br
-                input(id='editEmailButton', type='text', value='Edit Email')
-                br
-            div(id="editFirstNameDiv")
-                label Enter new First Name:
-                input(id="firstNameInput", name="first_name", type='text')
-                br
-                input(id="editFirstName", type='submit', value='Edit First Name')
-                br
-            div(id="editLastNameDiv")
-                label Enter New Last Name:
-                input(id="lastNameInput", name="last_name", type='text')
-                br
-                input(id="editLastName", type='submit', value='Edit Last Name')
-                br
-        div(id='ageDiv')
-            p Age :: [#{age}]
-            button(id="editAgeButt") EDIT
-            div(id="editAgeDiv")
-                p Enter new Age: 
-                textarea(id="ageText" name="age" rows="1" cols="40" value="")
-                br
-                button(class="enterNewDetails")
-    script(src='/public/index.html')
+    h2 Editting Account
+        form(id='profileForm' action=`/editAccount/${profile.id}`, method="post") 
+            label(for='password') Change Password
+            br
+            input(type='text', name='password')
+            br
+            br
+            label(for='firstname') Change First Name
+            br
+            input(type='text', name='first_name')
+            br
+            br
+            label(for='lastname') Change Last Name
+            br
+            input(type='text', name='last_name')
+            br
+            br
+            label(for='email') Change Email
+            br
+            input(type='text', name='email')
+            br
+            br
+            input(id="editAccButton", type='submit', value='Make Changes' autofocus) 
