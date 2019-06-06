@@ -3,6 +3,7 @@ pug = require('pug'),
 bodyParser = require('body-parser'),
 route = require('./routes/routes.js'),
 path = require('path');
+bycrypt = require('bcrypt-nodejs');
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.get('/home', route.index);
 app.get('/home/:id', route.index);
 app.get('/viewProfile/:id', route.viewProfile);
 app.get('/createAccount', route.createAccount);
-app.get('/editAccount', route.editAccount);
+app.get('/editAccount/:id', route.editAccount);
 app.get('/changeAvatar', route.changeAvatar);
 app.get('/deleteAccount/:id', route.deleteAccount);
 app.post('/createAccount', urlEncodedParser, route.createNewAccount);
