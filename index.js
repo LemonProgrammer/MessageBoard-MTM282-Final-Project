@@ -4,6 +4,7 @@ pug = require('pug'),
 bodyParser = require('body-parser'),
 route = require('./routes/routes.js'),
 path = require('path');
+bycrypt = require('bcrypt-nodejs');
 
 const app = express();
 
