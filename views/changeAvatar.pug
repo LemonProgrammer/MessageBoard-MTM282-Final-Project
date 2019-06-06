@@ -1,17 +1,20 @@
-extends layout.pug
+extends layout
 
 block content
-    img(src=faceUrl)
+    br
+    br
+    img#avatar(src="https://api.adorable.io/avatars/face/1/2/1/e7391a/100" onclick="myAvatar()")
+    br
     div(id="imageOptionsDiv")
         p Color : 
         select(id="colorSelection")
-            option(value="#e7391a" background-color="#e7391a") Red
-            option(value="#3453b8" background-color="#3453b8") Blue
-            option(value="##7ccf39" background-color="#7ccf39") Green
-            option(value="#d2fc39" background-color="#d2fc39") Yellow
-            option(value="#ffffff" background-color="#ffffff") White
-            option(value="#bf39e7" background-color="#bf39e7") Purple
-            option(value="#e79c39" background-color="#e79c39") Orange
+            option(value="e7391a") Red
+            option(value="3453b8") Blue
+            option(value="7ccf39") Green
+            option(value="d2fc39") Yellow
+            option(value="ffffff") White
+            option(value="bf39e7") Purple
+            option(value="e79c39") Orange
         br
         p Eyes : 
         select(id="eyeSelection")
@@ -28,36 +31,33 @@ block content
         br
         p Noses : 
         select(id="noseSelection")
-            option(value="2") Nose 1
-            option(value="3") Nose 2
-            option(value="4") Nose 3
-            option(value="5") Nose 4
-            option(value="6") Nose 5
-            option(value="7") Nose 6
-            option(value="8") Nose 7
-            option(value="9") Nose 8
+            option(value="2") Nose 2
+            option(value="3") Nose 3
+            option(value="4") Nose 4
+            option(value="5") Nose 5
+            option(value="6") Nose 6
+            option(value="7") Nose 7
+            option(value="8") Nose 8
+            option(value="9") Nose 9
         br
         p Mouths : 
         select(id="mouthSelection")
             option(value="1") Mouth 1
-            option(value="3") Mouth 1
-            option(value="5") Mouth 1
-            option(value="6") Mouth 1
-            option(value="7") Mouth 1
-            option(value="9") Mouth 1
-            option(value="10") Mouth 1
-            option(value="11") Mouth 1
+            option(value="3") Mouth 3
+            option(value="5") Mouth 5
+            option(value="6") Mouth 6
+            option(value="7") Mouth 7
+            option(value="9") Mouth 9
+            option(value="10") Mouth 10
+            option(value="11") Mouth 11
         br
-        p Borders : 
-        select(id="borderSelection")
-            option(value=0) Border 1
-            option(value=10) Border 2
-            option(value=20) Border 3
-            option(value=30) Border 4
-            option(value=40) Border 5
-            option(value=50) Border 6
+        p Size : 
+        select(id="sizeSelection")
+            option(value="100") 100
+            option(value="200") 200
+            option(value="300") 300
+            option(value="400") 400
         br
         div(id="imageButtonsDiv")
-            button(id="tryOutButt") Try it Out!
+            button(id="tryOutButt" onclick="myAvatar()") Try it Out!
             button(id="submitImage") Submit
-        script(src='/public/index.html')

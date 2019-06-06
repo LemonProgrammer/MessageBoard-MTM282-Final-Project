@@ -1,5 +1,43 @@
-body{
-    background-color: #0a0a0a;
-    color: aliceblue;
-    font-family: 'Inika', serif;
+body {
+  background-color: #4a9bff;
+  color: #2263b3;
+  font-family: "Inika", serif;
+  text-align: center;
 }
+
+#upperButtonsDiv{
+  float: right;
+  position: sticky;
+}
+
+nav {
+  text-decoration-color: #ffbf4a;
+}
+
+.links {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #B37910;
+}
+
+#links {
+  float: left;
+  position: sticky;
+}
+
+#links a {
+  display: block;
+  color: #000;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+#links a:hover {
+  background-color: #63A9FF;
+}
+
+.active {
+  background-color: #2263B3;
+}
+
+/* 4A9BFF 63A9FF 2263B3 B37910 FFBF4A */
